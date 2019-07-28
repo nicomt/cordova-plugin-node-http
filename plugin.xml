@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin id="cordova-plugin-node-http" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Cordova Node HTTP</name>
+    <js-module name="CordovaNodeHttp" src="www/dist/cordova-node-http.js">
+        <clobbers target="CordovaNodeHttp" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CordovaNodeHttp">
+                <param name="android-package" value="co.nicom.cordova.CordovaNodeHttp" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/CordovaNodeHttp.java" target-dir="src/co/nicom/cordova" />
+        <source-file src="src/android/ConnectionController.java" target-dir="src/co/nicom/cordova" />
+        <source-file src="src/android/SslUtil.java" target-dir="src/co/nicom/cordova" />
+    </platform>
+</plugin>

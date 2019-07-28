@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-node-http",
+  "version": "0.0.1",
+  "description": "Cordova HTTP plugin using Node.js http module interface",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "parcel build ./www/src/index.js -d ./www/dist -o cordova-node-http --global CordovaNodeHttp --no-minify",
+    "watch": "parcel warch ./www/src/index.js -d ./www/dist -o cordova-node-http --global CordovaNodeHttp --no-minify"
+  },
+  "author": "Nicolas Martinez",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "builtin-status-codes": "^3.0.0"
+  }
+}
