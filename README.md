@@ -9,7 +9,7 @@ It tries to match Node's API and behavior as closely as possible, but is still a
 
 The intent is to have the same API as the client part of the
 [Node HTTP module](https://nodejs.org/api/http.html). The interfaces are the same wherever
-practical, although limitations in browsers make an exact clone of the Node API impossible.
+practical.
 
 This module implements `http.request`, `http.get`, and most of `http.ClientRequest`
 and `http.IncomingMessage` in addition to `http.METHODS` and `http.STATUS_CODES`. It also supports `ca`, `cert` and `key` https options. See the
