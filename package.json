@@ -8,6 +8,30 @@
     "bundle": "parcel build ./www/src/index.js -d ./www/dist -o cordova-node-http --global CordovaNodeHttp --no-minify",
     "watch": "parcel warch ./www/src/index.js -d ./www/dist -o cordova-node-http --global CordovaNodeHttp --no-minify"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicomtinz/cordova-plugin-node-http.git"
+  },
+  "cordova": {
+    "id": "cordova-plugin-node-http",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "http",
+    "node",
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "0.0.1": {
+        "cordova-android": ">=8.0.0"
+      }
+    }
+  },
   "author": "Nicolas Martinez",
   "license": "MIT",
   "devDependencies": {
