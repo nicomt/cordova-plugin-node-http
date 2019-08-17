@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-node-http",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Cordova HTTP plugin using Node.js http module interface",
   "main": "src/index.js",
   "scripts": {

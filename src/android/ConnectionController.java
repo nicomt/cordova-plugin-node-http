@@ -28,6 +28,8 @@ class ConnectionController {
     int maxChunkSize;
     boolean shouldRead;
     boolean headersSent;
+    CallbackContext readHeadCallback;
+    boolean waitForRequest;
 
     ConnectionController(HttpURLConnection con) {
         this.conId = idCounter++;
@@ -39,24 +41,39 @@ class ConnectionController {
         if(in != null) in.close();
     }
 
-    void destroyOut() throws IOException {
-        if(out != null) out.close();
+    void destroyOut() throws JSONException, IOException {
+        if(out != null){
+            out.close();
+            if(in == null) {
+                initInStream();
+                if(readHeadCallback != null) {
+                    sendHeaderPacket(readHeadCallback);
+                } else {
+                    waitForRequest = false;
+                }
+            }
+        } 
     }
 
-    void abort() throws IOException {
+    void abort() throws JSONException, IOException {
         destroyOut();
         destroyIn();
     }
 
-    void initStreams() throws IOException {
+    void initInStream() throws IOException {
         try {
             this.in = con.getInputStream();
         } catch(FileNotFoundException e) {
             this.in = con.getErrorStream();
         }
-
+    }
+    void initStreams() throws IOException {
         if(!readOnlyMethods.contains(con.getRequestMethod())) {
             this.out = con.getOutputStream();
+            this.waitForRequest = true;
+        } else {
+            this.waitForRequest = false;
+            initInStream();
         }
     }
 
@@ -130,7 +147,10 @@ class ConnectionController {
     }
 
     public void readHead(CallbackContext callback) throws JSONException, IOException {
-        sendHeaderPacket(callback);
+        if(!waitForRequest)
+            sendHeaderPacket(callback);
+        else
+            readHeadCallback = callback;
     }
 
     public boolean read(int maxChunkSize, CallbackContext callback) throws IOException, JSONException {
